@@ -2,7 +2,11 @@
 
 <head>
     <title>Countdown</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='flipclock.css')}}">
+    <script src="{{url_for('static', filename='flipclock.min.js')}}"></script>
     <style>
         a:hover {
             text-decoration: none
@@ -58,6 +62,14 @@
             <div class="col-md-12 splash">
                 <div class="intro">
                     <h1 id="timer"></h1>
+                    <div class="clock"></div>
+
+                    <script type="text/javascript">
+                        var clock = $('.clock').FlipClock('{{ date }}', {
+                            clockFace: 'DailyCounter',
+                            countdown: true
+                        });
+                    </script>
                     <p>{{ message }}</p>
                 </div>
             </div>
@@ -68,16 +80,4 @@
     </script>
 </body>
 <footer>
-    <script>
-        var countDownDate = Date.parse("{{ date }}").getTime(),
-            x = setInterval(function () {
-                var e = (new Date).getTime(),
-                    t = countDownDate - e,
-                    n = Math.floor(t / 864e5),
-                    o = Math.floor(t % 864e5 / 36e5),
-                    a = Math.floor(t % 36e5 / 6e4),
-                    r = Math.floor(t % 6e4 / 1e3);
-                document.getElementById("timer").innerHTML = n + " Days, " + o + " Hours, " + a + " Minutes, " + r + " Seconds ", t < 0 && (clearInterval(x), document.getElementById("timer").innerHTML = "I'm here.")
-            }, 1e3);
-    </script>
 </footer>

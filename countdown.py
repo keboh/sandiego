@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import datetime
+import time
 import os
 
 
@@ -11,5 +12,5 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    date = datetime.datetime.fromtimestamp(TIME_EPOCH - 21600)
+    date = TIME_EPOCH - int(time.time())
     return render_template("index.html", date=date, message=MESSAGE)
