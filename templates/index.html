@@ -9,7 +9,8 @@
         }
 
         .home {
-            height: 100vh
+            height: 100vh;
+            background: url('https://i.imgur.com/IVIxLlq.jpg')repeat;
         }
 
         .splash {
@@ -68,6 +69,15 @@
 </body>
 <footer>
     <script>
-        var countDownDate = new Date("{{ date }}").getTime(), x = setInterval(function () { var e = (new Date).getTime(), t = countDownDate - e, n = Math.floor(t / 864e5), o = Math.floor(t % 864e5 / 36e5), a = Math.floor(t % 36e5 / 6e4), r = Math.floor(t % 6e4 / 1e3); document.getElementById("timer").innerHTML = n + " Days, " + o + " Hours, " + a + " Minutes, " + r + " Seconds ", t < 0 && (clearInterval(x), document.getElementById("timer").innerHTML = "I'm here.") }, 1e3);
+        var countDownDate = Date.parse("{{ date }}").getTime(),
+            x = setInterval(function () {
+                var e = (new Date).getTime(),
+                    t = countDownDate - e,
+                    n = Math.floor(t / 864e5),
+                    o = Math.floor(t % 864e5 / 36e5),
+                    a = Math.floor(t % 36e5 / 6e4),
+                    r = Math.floor(t % 6e4 / 1e3);
+                document.getElementById("timer").innerHTML = n + " Days, " + o + " Hours, " + a + " Minutes, " + r + " Seconds ", t < 0 && (clearInterval(x), document.getElementById("timer").innerHTML = "I'm here.")
+            }, 1e3);
     </script>
 </footer>
